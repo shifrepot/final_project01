@@ -1,6 +1,30 @@
+# requirements.txt
+
+# Python version
+# Conda Python 3.8
+
+# Installed packages
+python-dotenv
+scikit-image
+trimesh
+jupyter
+ipykernel
 pandas
 numpy
+seaborn
+matplotlib
 openai
+tqdm
+datasets
+transformers
+huggingface_hub
+torch
+torchvision
+torchaudio
+evaluate
+notebook
 sentence-transformers
+pandas
+numpy
 transformers
 sqlite3
