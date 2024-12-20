@@ -169,5 +169,7 @@ project/
 └── README.md                   # 프로젝트 설명 파일      
 추가 : data_analyze에서는 data 를 분석하면서 세운 가설과 통계 검정, visualization 등이 포함되어 있음    
 ## 프로젝트 최종 결과 gif 로 시연     
-![gif01](https://github.com/user-attachments/assets/ab19904f-fa4c-4803-adc6-ec4c7afd5ad9)
+![gif02](https://github.com/user-attachments/assets/9fff771f-2440-43dc-ad2a-522873a166ab)    
+## 마지막 최종 결과만   
+![image](https://github.com/user-attachments/assets/baed867c-d461-48f1-9049-c5541f971d92)
 
