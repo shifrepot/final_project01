@@ -40,7 +40,7 @@ TMDB와 IMDb 데이터를 결합하여 제작.
 아키텍처
 -------------
 
-######1. 전체 흐름
+###### 1. 전체 흐름
 데이터 전처리 및 임베딩 생성:
 
 영화 데이터를 전처리(title, genres, overview)한 후, SentenceTransformer로 임베딩 생성.
@@ -126,18 +126,21 @@ trainer = Trainer(
 # 모델 훈련
 trainer.train()
 trainer.save_model("./finetuned_sentiment_model")
-3. 모델 성능
+### 3. 모델 성능
 정확도(Accuracy): 89.3%
 F1 Score: 88.7%
 pip install -r requirements.txt
 
 export OPENAI_API_KEY="your_openai_api_key"
 데이터베이스 생성:
-python db_setup.py
+python db_setup.py -> movies_with_embeddings.db 로 저장
+* * *
 영화 추천 시스템 실행:
 python recommend_system.py
+* * *
 입력:
 "I absolutely loved Titanic. It made me so emotional!"
+* * *
 출력:
 [INFO] 영화 추천 작업 시작!
 [INFO] 영화 제목 추출 중...
@@ -153,6 +156,7 @@ python recommend_system.py
 추천 영화:
 Title: Titanic 2, Genres: Drama, Romance, Year: 2010, Similarity: 0.87
 Title: Avatar, Genres: Sci-Fi, Adventure, Year: 2009, Similarity: 0.82
+* * *
 파일 구조
 project/
 ├── db_setup.py                 # DB 구성 및 임베딩 생성 코드
