@@ -167,4 +167,7 @@ project/
 ├── movies_with_embeddings.db   # SQLite 데이터베이스   
 ├── requirements.txt            # 필요한 패키지 목록   
 └── README.md                   # 프로젝트 설명 파일      
-추가 : data_analyze에서는 data 를 분석하면서 세운 가설과 통계 검정, visualization 등이 포함되어 있음   
+추가 : data_analyze에서는 data 를 분석하면서 세운 가설과 통계 검정, visualization 등이 포함되어 있음    
+## 프로젝트 최종 결과 gif 로 시연     
+![gif01](https://github.com/user-attachments/assets/ab19904f-fa4c-4803-adc6-ec4c7afd5ad9)
+
