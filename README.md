@@ -47,10 +47,10 @@ TMDB와 IMDb 데이터를 결합하여 제작.
 결과를 SQLite 데이터베이스에 저장.   
 감정 분석: 사용자의 입력 텍스트를 기반으로 긍정/부정을 분석.   
 
-#####DB 검색:사용자 입력 임베딩과 DB의 영화 임베딩 간 코사인 유사도를 계산.   
+##### DB 검색:사용자 입력 임베딩과 DB의 영화 임베딩 간 코사인 유사도를 계산.   
 가장 유사도가 높은 영화를 반환.   
 
-#####LLM 호출: DB에서 적절한 결과를 찾지 못한 경우 gpt-4o API를 호출해 새로운 영화를 생성.   
+##### LLM 호출: DB에서 적절한 결과를 찾지 못한 경우 gpt-4o API를 호출해 새로운 영화를 생성.   
 결과 출력: 감정 분석 결과, DB 검색 결과 또는 gpt-4o 생성 결과를 자연어로 출력.   
 ###### 2. 구현 세부사항   
 ##### 2.1 데이터 전처리 및 임베딩 생성   
@@ -159,11 +159,12 @@ Title: Titanic 2, Genres: Drama, Romance, Year: 2010, Similarity: 0.87
 Title: Avatar, Genres: Sci-Fi, Adventure, Year: 2009, Similarity: 0.82   
 * * *
 파일 구조   
-project/
+project/    
 ├── db_setup.py                 # DB 구성 및 임베딩 생성 코드   
 ├── sentiment_analyzer.py       # 감정 분석 코드   
 ├── llm_query.py                # GPT-4 호출 코드   
 ├── recommend_system.py         # 전체 시스템 통합 및 실행 코드   
 ├── movies_with_embeddings.db   # SQLite 데이터베이스   
 ├── requirements.txt            # 필요한 패키지 목록   
-└── README.md                   # 프로젝트 설명 파일   
+└── README.md                   # 프로젝트 설명 파일      
+추가 : data_analyze에서는 data 를 분석하면서 세운 가설과 통계 검정, visualization 등이 포함되어 있음   
