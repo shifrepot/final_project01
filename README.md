@@ -1,17 +1,23 @@
 Final_Project01: RAG 기반 영화 추천 시스템
+=============
+
 프로젝트 개요
+-------------
 이 프로젝트는 RAG(Retrieval-Augmented Generation) 기반의 영화 추천 시스템입니다.
 사용자의 자연어 입력을 분석하여 감정을 파악하고, 데이터베이스(DB)와 LLM(GPT API)을 결합해 사용자의 취향에 맞는 영화를 추천합니다.
 특히 감정 분석 모델과 유사도 검색 알고리즘, 그리고 GPT-4를 활용한 생성형 추천을 결합하여 강력한 사용자 경험을 제공합니다.
 
 프로젝트 목표
+-------------
 사용자의 입력(영화 리뷰 및 의견)을 기반으로 취향과 감정에 맞는 영화를 추천합니다.
 최소한의 자원(GPU, 메모리)을 사용하면서도 RAG 아키텍처를 활용해 효율적으로 동작합니다.
 사용자 친화적인 챗봇 인터페이스를 제공하여 자연스러운 대화 흐름으로 결과를 제공합니다.
+
 데이터셋
+-------------
 이 프로젝트에서는 다음과 같은 데이터셋을 사용했습니다:
 
-MovieLens 32M Dataset
+###### MovieLens 32M Dataset
 
 영화 평점, 태그 데이터를 포함한 대규모 안정적인 벤치마크 데이터셋.
 총 3,200만 개의 평점, 200만 개의 태그, 87,585편의 영화를 포함.
@@ -24,54 +30,62 @@ The Ultimate 1Million Movies Dataset
 
 영화 제목, 개봉 정보, 평점, 인기 지수, 관객 평점, 제작사 등 포괄적인 정보를 포함.
 TMDB와 IMDb 데이터를 결합하여 제작.
-IMDb Dataset (from datasets 라이브러리)
+
+###### IMDb Dataset (from datasets 라이브러리)
 
 영화 리뷰 텍스트 및 긍정/부정 레이블 포함.
 감정 분석 모델 파인튜닝에 사용.
 크기: 50,000개의 영화 리뷰 (25,000개의 훈련 데이터와 25,000개의 테스트 데이터).
+
 아키텍처
-1. 전체 흐름
+-------------
+
+######1. 전체 흐름
 데이터 전처리 및 임베딩 생성:
 
 영화 데이터를 전처리(title, genres, overview)한 후, SentenceTransformer로 임베딩 생성.
 결과를 SQLite 데이터베이스에 저장.
 감정 분석: 사용자의 입력 텍스트를 기반으로 긍정/부정을 분석.
 
-DB 검색:사용자 입력 임베딩과 DB의 영화 임베딩 간 코사인 유사도를 계산.
+#####DB 검색:사용자 입력 임베딩과 DB의 영화 임베딩 간 코사인 유사도를 계산.
 가장 유사도가 높은 영화를 반환.
 
-LLM 호출: DB에서 적절한 결과를 찾지 못한 경우 gpt-4o API를 호출해 새로운 영화를 생성.
+#####LLM 호출: DB에서 적절한 결과를 찾지 못한 경우 gpt-4o API를 호출해 새로운 영화를 생성.
 결과 출력: 감정 분석 결과, DB 검색 결과 또는 gpt-4o 생성 결과를 자연어로 출력.
-2. 구현 세부사항
-2.1 데이터 전처리 및 임베딩 생성
-파일: db_setup.py
-기능:
+###### 2. 구현 세부사항
+##### 2.1 데이터 전처리 및 임베딩 생성
+#### 파일: db_setup.py
+#### 기능:
 불필요한 열 제거, 결합 텍스트(title, genres, overview) 생성.
 SentenceTransformer로 텍스트 임베딩 생성.
 SQLite 데이터베이스(movies_with_embeddings.db)에 저장.
-2.2 감정 분석
-파일: sentiment_analyzer.py
-모델: newih/finetuning-sentiment-model-10000-samples
-기능:
+
+##### 2.2 감정 분석
+#### 파일: sentiment_analyzer.py
+#### 모델: newih/finetuning-sentiment-model-10000-samples
+#### 기능:
 사용자 입력 텍스트의 감정을 긍정/부정으로 분류.
 transformers 라이브러리의 pipeline 활용.
-2.3 영화 검색
-파일: recommend_system.py
-기능:
+
+##### 2.3 영화 검색
+#### 파일: recommend_system.py
+#### 기능:
 사용자 입력 텍스트를 임베딩화.
 DB의 영화 임베딩과 코사인 유사도 계산.
 가장 유사도가 높은 영화 5개 반환.
-2.4 GPT-4 기반 영화 추천
-파일: llm_query.py
-기능:
+
+##### 2.4 GPT-4 기반 영화 추천
+#### 파일: llm_query.py
+#### 기능:
 사용자의 입력을 GPT-4에 전달하여 관련 영화 추천 생성.
 감정 분석 모델 파인튜닝
-1. 파인튜닝 과정
+
+### 1. 파인튜닝 과정
 데이터셋: IMDb Dataset (50,000개의 영화 리뷰)
 모델: distilbert-base-uncased
 훈련 데이터: 10,000개의 훈련 데이터와 1,000개의 테스트 데이터.
 프레임워크: Hugging Face transformers.
-2. 훈련 코드
+### 2. 훈련 코드
 from datasets import load_dataset
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, Trainer, TrainingArguments
 
